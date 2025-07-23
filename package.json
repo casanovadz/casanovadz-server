@@ -1,7 +1,7 @@
 {
-  "name": "server",
+  "name": "casanovadz-server",
   "version": "1.0.0",
-  "description": "server pour selie a distance",
+  "description": "server pour selfie a distance", 
   "main": "server.js",
   "scripts": {
     "start": "node server.js"

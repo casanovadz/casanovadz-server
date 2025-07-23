@@ -1,3 +1,5 @@
+// server.js
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -13,6 +15,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
+
+// ✅ Health check route
+app.get("/", (req, res) => {
+    res.send("✅ CasanovaDZ Server is running!");
+});
 
 // نقطة النهاية لتحليل الكابتشا
 app.post('/captcha-solver', upload.none(), async (req, res) => {
@@ -44,12 +51,13 @@ app.post('/captcha-solver', upload.none(), async (req, res) => {
     }
 });
 
-// دالة تحليل وهمية
+// دالة تحليل وهمية (تقوم بمحاكاة النجاح أو الفشل عشوائيًا)
 async function analyzeCaptcha(imageBase64, targetNumber) {
     console.log(`[PROCESSING] Analyzing image for: ${targetNumber}`);
     return Math.random() > 0.5;
 }
 
+// تشغيل الخادم
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+    console.log(`🚀 CasanovaDZ server running on port ${PORT}`);
 });
